@@ -18,6 +18,14 @@ Example scripts for the hole-ice extension of clsim in the IceCube simulation fr
 ▶ docker-compose run icetray scripts/generate_photons.py
 ```
 
+### Propagate Photons
+
+```
+[2022-08-11 17:08:05] fiedl@fiedl-mbp ~/icecube/hole-ice-scripts master ⚡ 4b4a968
+▶ docker-compose run icetray scripts/propagate_photons.py
+```
+
+
 ## Manual Installation on macOS
 
 ```
