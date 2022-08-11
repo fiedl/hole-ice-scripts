@@ -2,6 +2,22 @@
 
 Example scripts for the hole-ice extension of clsim in the IceCube simulation framework.
 
+## Usage
+
+### Checkout this repo
+
+```
+[2022-08-10 11:16:50] fiedl@fiedl-mbp ~/icecube
+▶ git clone git@github.com:fiedl/hole-ice-scripts.git
+```
+
+### Generate photons
+
+```
+[2022-08-11 17:08:05] fiedl@fiedl-mbp ~/icecube/hole-ice-scripts master ⚡ e6cc5e9
+▶ docker-compose run icetray scripts/generate_photons.py
+```
+
 ## Manual Installation on macOS
 
 ```
