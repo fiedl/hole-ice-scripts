@@ -31,7 +31,6 @@ def main():
     UseCPUs = True,
     UseGPUs = False,
     UseI3PropagatorService = False,
-    #MCTreeName = 'I3MCTree',
     OutputMCTreeName = None,
     PhotonSeriesName = 'PhotonSeriesMap',
     MCPESeriesName = None,
@@ -39,7 +38,7 @@ def main():
     IceModelLocation = os.path.expandvars('$I3_SRC/ice-models/resources/models/ICEMODEL/spice_bfr-v2'),
     UseCascadeExtension = False,
     DisableTilt = False,
-    DoNotParallelize = False,
+    DoNotParallelize = True,
     DOMOversizeFactor = 1.0,
     DOMEfficiency = 1.0,
     HoleIceParameterization = os.path.expandvars('$I3_SRC/ice-models/resources/models/ANGSENS/angsens/as.nominal'), # no hole-ice approximation
@@ -48,7 +47,7 @@ def main():
     StopDetectedPhotons = False,
     SaveAllPhotons = True,
     SaveAllPhotonsPrescale = 1.0,
-    PhotonHistoryEntries = 0 # infinite entries
+    PhotonHistoryEntries = 10
   )
 
   tray.Add(
@@ -56,8 +55,16 @@ def main():
     filename = "data/propagated_photons.i3"
   )
 
+  tray.Add(
+    count_propagated_photons,
+    Streams = [icetray.I3Frame.DAQ]
+  )
+
   tray.Execute()
 
+
+def count_propagated_photons(frame):
+  print(f"number of PhotonSeriesMap entries: {len(frame['PhotonSeriesMap'])}")
 
 if __name__=='__main__':
   main()

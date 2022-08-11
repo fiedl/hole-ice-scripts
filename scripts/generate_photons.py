@@ -9,8 +9,8 @@ from icecube.dataclasses import I3Position, I3Direction
 from icecube.simclasses import I3FlasherPulse, I3FlasherPulseSeries
 
 NUMBER_OF_FRAMES_TO_GENERATE = 1
-PHOTON_START_POSITION = I3Position(0,0,0)
-PHOTON_START_DIRECTION = I3Direction(0,0,0)
+PHOTON_START_POSITION = I3Position(-256.02301025390625 + 1, -521.281982421875, 500)
+PHOTON_START_DIRECTION = I3Direction(-1.0, 0, 0)
 
 def main():
   random_number_generator = phys_services.I3SPRNGRandomService(
