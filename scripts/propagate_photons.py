@@ -32,6 +32,7 @@ def main():
     UseGPUs = False,
     UseI3PropagatorService = False,
     OutputMCTreeName = None,
+    FlasherPulseSeriesName = 'PhotonFlasherPulseSeries',
     PhotonSeriesName = 'PhotonSeriesMap',
     MCPESeriesName = None,
     RandomService = tray.context['I3RandomService'],
@@ -47,7 +48,7 @@ def main():
     StopDetectedPhotons = False,
     SaveAllPhotons = True,
     SaveAllPhotonsPrescale = 1.0,
-    PhotonHistoryEntries = 10
+    PhotonHistoryEntries = 0
   )
 
   tray.Add(
