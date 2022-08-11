@@ -1,0 +1,7 @@
+version: "3.9"
+services:
+  icetray:
+    image: "icecube/icetray:icetray-main-devel"
+    volumes:
+      - ./scripts:/root/scripts
+      - ./data:/root/data
