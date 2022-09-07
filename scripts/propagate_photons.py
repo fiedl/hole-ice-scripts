@@ -2,7 +2,7 @@
 
 import os
 from I3Tray import I3Tray
-from icecube import icetray, clsim, phys_services, simclasses, photonics_service
+from icecube import icetray, clsim, phys_services, simclasses, photonics_service, dataclasses
 
 DETECTOR_GEOMETRY_FILE = os.path.expandvars(
   '$I3_TESTDATA/GCD/GeoCalibDetectorStatus_2020.Run134142.Pass2_V0.i3.gz')
@@ -51,6 +51,15 @@ def main():
     PhotonHistoryEntries = 0
   )
 
+  # Add a fake monte-carlo-particle tree as workaround for a steamshovel issue:
+  # https://github.com/fiedl/hole-ice-scripts/issues/6#issuecomment-1212560461
+  # FIXME Resolve steamshovel issue and remove this step.
+  #
+  tray.Add(
+    add_fake_monte_carlo_particle_tree,
+    Streams = [icetray.I3Frame.DAQ]
+  )
+
   tray.Add(
     'I3Writer',
     filename = "data/propagated_photons.i3"
@@ -63,6 +72,18 @@ def main():
 
   tray.Execute()
 
+# Add a fake monte-carlo tree as workaround for a steamshovel issue:
+# https://github.com/fiedl/hole-ice-scripts/issues/6#issuecomment-1212560461
+# FIXME Resolve steamshovel issue and remove this function.
+#
+def add_fake_monte_carlo_particle_tree(frame):
+  frame['I3MCTree'] = dataclasses.I3MCTree()
+  particle = dataclasses.I3Particle()
+  particle.pos = dataclasses.I3Position(-255.023, -521.282, 500)
+  particle.dir = dataclasses.I3Direction(3.14 / 2, 0)
+  particle.time = 0
+  particle.type = dataclasses.I3Particle.ParticleType.Hadrons
+  frame['I3MCTree'].add_primary(particle)
 
 def count_propagated_photons(frame):
   print(f"number of PhotonSeriesMap entries: {len(frame['PhotonSeriesMap'])}")
