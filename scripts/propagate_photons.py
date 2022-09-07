@@ -48,7 +48,7 @@ def main():
     StopDetectedPhotons = False,
     SaveAllPhotons = True,
     SaveAllPhotonsPrescale = 1.0,
-    PhotonHistoryEntries = 0
+    PhotonHistoryEntries = 10
   )
 
   # Add a fake monte-carlo-particle tree as workaround for a steamshovel issue:
