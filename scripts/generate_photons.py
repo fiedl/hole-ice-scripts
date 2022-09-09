@@ -13,10 +13,8 @@ PHOTON_START_POSITION = I3Position(-256.02301025390625 + 1, -521.281982421875, 5
 PHOTON_START_DIRECTION = I3Direction(-1.0, 0, 0)
 
 def main():
-  random_number_generator = phys_services.I3SPRNGRandomService(
-    seed = 1234,
-    nstreams = 100000000,
-    streamnum = 1
+  random_number_generator = phys_services.I3GSLRandomService(
+    seed = 1234
   )
 
   tray = I3Tray()

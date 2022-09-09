@@ -11,10 +11,8 @@ icetray.set_log_level(icetray.I3LogLevel.LOG_TRACE)
 
 
 def main():
-  random_number_generator = phys_services.I3SPRNGRandomService(
-    seed = 1234,
-    nstreams = 100000000,
-    streamnum = 1
+  random_number_generator = phys_services.I3GSLRandomService(
+    seed = 1234
   )
 
   tray = I3Tray()
