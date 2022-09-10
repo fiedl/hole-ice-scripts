@@ -74,9 +74,59 @@ Python 3.10.6
 ▶ make -j 4
 ```
 
-Framework Repository: https://github.com/icecube/icetray
-Framework Documentation: https://docs.icecube.aq/icetray/main/
-Resolving some python issues: https://icecube-spno.slack.com/archives/C02KQL9KN/p1660132490666279
+## SSH connection to Zeuthen
+
+1. Install `openssh` from homebrew.
+
+   ```shell
+   [2022-09-10 13:46:51] fiedl@fiedl-mbp ~/icecube
+   ▶ brew install openssh
+   ▶ ssh -V
+   OpenSSH_8.6p1, LibreSSL 3.3.6
+   ```
+
+2. Configure `~/.ssh/config`
+
+   ```shell
+   # ~/.ssh/config
+
+   host pub*.zeuthen.desy.de transfer.zeuthen.desy.de transfer.ifh.de
+     ProxyCommand none
+
+   host burst.ifh.de transit.ifh.de
+     IdentityFile ~/.ssh/id_rsa.zeuthen
+     ProxyCommand ssh -qax -W %h:%p ztf-wgs.ifh.de
+
+   host *.ifh.de *.zeuthen.desy.de
+     User fiedl
+     GSSAPIAuthentication yes
+     GSSAPIDelegateCredentials yes
+     ProxyCommand ssh -qax -W %h:%p pub2.zeuthen.desy.de
+
+   host *
+     ServerAliveInterval 55
+     ServerAliveCountMax 5
+     ControlPath ~/.ssh/master-%r@%h:%p
+   ```
+
+3. Request kerberos ticket. This will ask for your password one and allow password-less login for 30 days.
+
+   ```shell
+   [2022-09-10 13:46:51] fiedl@fiedl-mbp ~/icecube
+   ▶ kinit --renewable fiedl@IFH.DE
+   ```
+
+4. Then `ssh` into the gpu machine in zeuthen.
+
+   ```
+   [2022-09-10 13:46:51] fiedl@fiedl-mbp ~/icecube
+   ▶ ssh ice-wgs-gpu.ifh.de
+   ```
+
+## Further Resources
+
+- Framework Repository: https://github.com/icecube/icetray
+- Framework Documentation: https://docs.icecube.aq/icetray/main/
 
 ## Author and License
 
