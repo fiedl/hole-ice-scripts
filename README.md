@@ -98,8 +98,8 @@ Example scripts for the hole-ice extension of clsim in the IceCube simulation fr
    [2022-09-09 14:23:47] fiedl@fiedl-mbp ~/icecube
    ▶ brew install mutagen-io/mutagen/mutage
    ▶ brew install mutagen-io/mutagen/mutagen-compose
-   ▶ mutagen sync create --stage-mode=internal --name icetray-zeuthen ~/icecube/icetray fiedl@ice-wgs-gpu.ifh.de:~/icecube/icetray
-   ▶ mutagen sync create --stage-mode=internal --name hole-ice-scripts-zeuthen ~/icecube/hole-ice-scripts fiedl@ice-wgs-gpu.ifh.de:~/icecube/hole-ice-scripts
+   ▶ mutagen sync create --stage-mode=internal --sync-mode=two-way-resolved --name hole-ice-scripts-zeuthen ~/icecube/hole-ice-scripts fiedl@ice-wgs-gpu.ifh.de:~/icecube/hole-ice-scripts
+   ▶ mutagen sync create --stage-mode=internal --sync-mode=two-way-resolved --name icetray-zeuthen ~/icecube/icetray fiedl@ice-wgs-gpu.ifh.de:~/icecube/icetray
    ```
 
    [Mutagen](https://github.com/fiedl/hole-ice-scripts/issues/9#issuecomment-1242719364) will keep the local directories in sync with the zeuthen directories. This is similar to mounting, but you have a local copy, and it feels much faster because you are not constantly waiting for the remote server. To stop the background sync, run: `mutagen sync terminate icetray-zeuthen hole-ice-scripts-zeuthen`.
