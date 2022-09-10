@@ -140,6 +140,8 @@ Example scripts for the hole-ice extension of clsim in the IceCube simulation fr
 
 ## Manual Installation on macOS
 
+OpenCL is currently [not supported](https://github.com/fiedl/hole-ice-scripts/issues/11) by icetray on M1 chips. But installing icetray on macOS is still useful to run steamshovel locally.
+
 ```
 [2022-08-10 11:16:50] fiedl@fiedl-mbp ~/icecube
 ▶ git clone git@github.com:icecube/icetray.git
