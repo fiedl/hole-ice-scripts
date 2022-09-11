@@ -18,6 +18,33 @@ Example scripts for the hole-ice extension of clsim in the IceCube simulation fr
 ▶ docker-compose run icetray scripts/generate_photons.py
 ```
 
+### Add hole-ice cylinders to detector geometry
+
+```python
+# in: scripts/generate_hole_ice_geometry.py
+
+tray.Add(
+  add_hole_ice_cylinders,
+  Streams = [icetray.I3Frame.Geometry]
+)
+
+def add_hole_ice_cylinders(frame):
+  cylinder = I3CLSimMediumCylinder()
+  cylinder.x = -256.02301025390625
+  cylinder.y = -521.2819824218750
+  cylinder.radius = 0.3
+  cylinder.scattering_length = 100.0
+  cylinder.absorption_length = 0.0
+
+  cylinders = I3CLSimMediumCylinderSeries([cylinder])
+  frame.Put("I3CLSimMediumCylinders", cylinders)
+```
+
+```
+[2022-09-11 23:01:53] fiedl@kepler00 ~/icecube/hole-ice-scripts master ⚡ 60d7778
+▶ scripts/generate_hole_ice_geometry.py
+```
+
 ### Propagate Photons
 
 ```

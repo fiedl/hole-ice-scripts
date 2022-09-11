@@ -4,9 +4,6 @@ import os
 from I3Tray import I3Tray
 from icecube import icetray, clsim, phys_services, simclasses, photonics_service, dataclasses
 
-DETECTOR_GEOMETRY_FILE = os.path.expandvars(
-  '$I3_TESTDATA/GCD/GeoCalibDetectorStatus_2020.Run134142.Pass2_V0.i3.gz')
-
 icetray.set_log_level(icetray.I3LogLevel.LOG_TRACE)
 
 
@@ -20,12 +17,12 @@ def main():
 
   tray.Add(
     'I3Reader',
-    Filenamelist = [DETECTOR_GEOMETRY_FILE, 'data/generated_photons.i3']
+    Filenamelist = ['data/hole_ice_geometry.i3', 'data/generated_photons.i3']
   )
 
   tray.Add(
     clsim.I3CLSimMakePhotons,
-    GCDFile = DETECTOR_GEOMETRY_FILE,
+    GCDFile = 'data/hole_ice_geometry.i3',
     UseCPUs = True,
     UseGPUs = False,
     UseI3PropagatorService = False,
@@ -46,7 +43,7 @@ def main():
     StopDetectedPhotons = False,
     SaveAllPhotons = True,
     SaveAllPhotonsPrescale = 1.0,
-    PhotonHistoryEntries = 10
+    PhotonHistoryEntries = 100
   )
 
   # Add a fake monte-carlo-particle tree as workaround for a steamshovel issue:

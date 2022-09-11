@@ -45,7 +45,7 @@ def generate_photons(frame):
   pulse.SetPos(PHOTON_START_POSITION)
   pulse.SetDir(PHOTON_START_DIRECTION)
   pulse.SetTime(0.0 * I3Units.ns)
-  pulse.SetNumberOfPhotonsNoBias(100)
+  pulse.SetNumberOfPhotonsNoBias(30)
   pulse.SetType(I3FlasherPulse.FlasherPulseType.LED340nm)
   pulse.SetPulseWidth(1. * I3Units.ns)
   pulse.SetAngularEmissionSigmaPolar(0.001 * I3Units.deg)
